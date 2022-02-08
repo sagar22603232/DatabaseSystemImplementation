@@ -1,0 +1,2 @@
+PATH="/Users/akashparikh/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"   
+export LIBRARY_PATH="/Users/akashparikh/homebrew/Cellar/flex/2.6.4_2/lib"   

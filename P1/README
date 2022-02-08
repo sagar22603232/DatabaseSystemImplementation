@@ -50,7 +50,7 @@ q1
 (r_name = 'EUROPE')
 
 q2 
-(r_name < 'middle east') AND
+(r_name < 'MIDDLE EAST') AND
 (r_regionkey > 1)
 
 q3 

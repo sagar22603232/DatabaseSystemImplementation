@@ -6,6 +6,7 @@
 #include "ComparisonEngine.h"
 #include "DBFile.h"
 #include "Defs.h"
+#include <iostream>
 
 // stub file .. replace it with your own DBFile.cc
 
@@ -31,19 +32,22 @@ int DBFile::Create(const char *f_path, fType f_type, void *startup)
     {
     case heap:
     {
+        cout<<"Enter inside heap";
         diskFilePtr->Open(0, (char *)f_path);
         writePageValue = 0;
         readPageValue = 0;
         dirtyBitFlag = false;
         checkEnd = true;
         MoveFirst();
+          break;
     }
-    break;
+  
     case sorted:
         // code block
         break;
     default:
         // code block
+        break;
     }
     return 1;
 }
@@ -107,18 +111,19 @@ void DBFile::Add(Record &rec)
 
 int DBFile::GetNext(Record &fetchme)
 {
-    if(checkEnd){
+    if(checkEnd!=true){
         fetchme.Copy(currReadPtr);
         int result = readPagePtr->GetFirst(currReadPtr);
         if(result == 0){
             readPageValue++;
             int size = diskFilePtr->GetLength()-1;
             if(readPageValue < size){
-                diskFilePtr->GetPage(readPagePtr, readPageValue);
+                 diskFilePtr->GetPage(readPagePtr, readPageValue);
                 readPagePtr->GetFirst(currReadPtr);
             }
-            else{
+            else{   
                 checkEnd = true;
+               
             }
         }
         return 1;
