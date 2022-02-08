@@ -13,9 +13,20 @@ typedef enum {heap, sorted, tree} fType;
 // stub DBFile header..replace it with your own DBFile.h 
 
 class DBFile {
+private:
+	Record *currReadPtr;
+	File *diskFilePtr;
+	Page* readPagePtr;
+	Page* writePagePtr;
+	bool dirtyBitFlag;
+	off_t writePageValue;
+	off_t readPageValue;
+	bool checkEnd;
+
 
 public:
 	DBFile (); 
+	~DBFile ();
 
 	int Create (const char *fpath, fType file_type, void *startup);
 	int Open (const char *fpath);
